@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://liuchao.site">
+  <title>Fantasy的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python并发编程之线程总结
+&amp;nbsp;&amp;nbsp;一个正在运行的程序可以成为一个进程,每个进程管理者他自己的系统状态.比如打开一个播放器来听听歌,播放器这个运行的程序就是一个进程.进程之间是相互独立的,但感觉一个听歌时,我们一边听着歌声,一边看看歌词,一边还刷刷评论,仿佛有几个任务在同时运行着,这一个个的子任务,就是一个个进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fantasy的个人博客">
+<meta property="og:url" content="http://liuchao.site/2016/12/05/Python并发编程之线程总结/index.html">
+<meta property="og:site_name" content="Fantasy的个人博客">
+<meta property="og:description" content="Python并发编程之线程总结
+&amp;nbsp;&amp;nbsp;一个正在运行的程序可以成为一个进程,每个进程管理者他自己的系统状态.比如打开一个播放器来听听歌,播放器这个运行的程序就是一个进程.进程之间是相互独立的,但感觉一个听歌时,我们一边听着歌声,一边看看歌词,一边还刷刷评论,仿佛有几个任务在同时运行着,这一个个的子任务,就是一个个进程">
+<meta property="og:updated_time" content="2016-12-04T18:39:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fantasy的个人博客">
+<meta name="twitter:description" content="Python并发编程之线程总结
+&amp;nbsp;&amp;nbsp;一个正在运行的程序可以成为一个进程,每个进程管理者他自己的系统状态.比如打开一个播放器来听听歌,播放器这个运行的程序就是一个进程.进程之间是相互独立的,但感觉一个听歌时,我们一边听着歌声,一边看看歌词,一边还刷刷评论,仿佛有几个任务在同时运行着,这一个个的子任务,就是一个个进程">
+  
+    <link rel="alternative" href="/atom.xml" title="Fantasy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container" v-bind:class="{ show: isCtnShow }">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" v-bind:class="{ show: isShow }">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fantasy</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" v-on:click="openSlider($event, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" v-on:click="openSlider($event, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/liuchaopy" title="github"><i class="icon-github"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" v-bind:class="{ show: isShow, hide: isShow === false }">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Fantasy</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="NaN" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fantasy</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/liuchaopy" title="github"><i class="icon-github"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-Python并发编程之线程总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python并发编程之线程总结</p>
+<p>&nbsp;&nbsp;一个正在运行的程序可以成为一个进程,每个进程管理者他自己的系统状态.比如打开一个播放器来听听歌,播放器这个运行的程序就是一个进程.<br>进程之间是相互独立的,但感觉一个听歌时,我们一边听着歌声,一边看看歌词,一边还刷刷评论,仿佛有几个任务在同时运行着,这一个个的子任务,就是一个个进<br>程<a id="more"></a><br>创建出来的线程,当然,程序要运行,至少要有一个线程.进程和线程在操作系统的调度下,不断的切换,由于时间极短,感觉是在同时运行的.多个程序同时运行,<br>也叫并行,真正的并行需要运行在多核CPU上,正因为进程和线程的不断切换,操作系统也会自动把很多任务轮流调度到每个核心上执行,在早期的单核CPU电脑时,<br>我们也可以同时运行多个程序或任务.在多线程编程中,多个线程同时更新同一个数据结构时容易造成资源竞争,这时需要引入互斥锁等机制来保持数据的同步.<br>比如多个线程往一个文件里写东西,多个线程同时写,那不乱套了吗,需要锁来保持一次只有一个线程在写入,多个线程依次执行.<br>&nbsp;&nbsp;这里再说一下并行和并发的区别,并行是同时运行,只有在多核cpu上才能真正实现,而并发是指在一段时间间隔内,多个事件发生,就好比做好吃<br>的时,我可以先炒炒菜,然后洗去那个调味品,回来继续炒,然后又去洗洗下一个菜的材料,然后又翻两下锅里.一个时间间隔内,切换着做了多件事,其实同一个时间<br>点,只做一件事.在网络服务器上,并发也指能同时处理的连接数,比如一个服务器能同时处理1000个TCP链接,这个服务器的并发量就是1000,尽管服务器可能只是<br>双核或4核的.<br>&nbsp;&nbsp;Python在大部分系统上都支持不同形式的并发编程.一般为三种:多进程,多线程,协程.对于多进程,还没有去好好研究,先总结一下多线程和协程<br>吧.</p>
+<p>##多线程<br>&nbsp;&nbsp;大多数人对多线程比较熟悉,Java等语言都支持的很好,可以将多个线程同时运行在多个核心上,并保证线程安全.蛋疼的是Python因为历史<br>原因,多线程机制有着限制,为了保证运行线程安全,Cpython解释器(GIL)引入了内部全局解释器锁这样一个东西,而Cpython是大部分环境下默认的Python程<br>序执行环境,GIL同时只允许一个线程执行,哪怕程序在多核处理器的计算机上也只能在运行在单个处理器上,这也是GIL争论最多的地方,当然多线程尽管在性能上<br>不太行,但它还是有它可以并发执行程序的优点.而且Python提供的threading等模块也使写多线程程序变得非常简单,这也就是Python的风格.来看看多线程的<br>用法吧!</p>
+<p>最最最简单的:</p>
+<pre><code>:::python
+import threading
+
+def hello():
+    print(&apos;hello&apos;)
+
+t = threading.Thread(target=hello)
+t.start()
+t.join()
+</code></pre><p>程序运行在主线程上,创建一个Thread实例也就是创建一个新线程,target参数传入需要通过新线程处理的函数名.<br>通过新线程的start方法启动这个新线程,新线程的函数开始执行.join方法会等待调用join的线程执行完后,再回到主线程继续执行.当然join还可以传入一个Timeout,像这样t.join(0.5),启动线程后,在0.5s的时间内,如果线程未执行完,也会终止这个线程,跳入下一个线程或主线程.</p>
+<p>也可以通过重载Thread的run方法来达到同样的目的.这样</p>
+<pre><code>:::python
+   import threading
+
+class MyThread(threading.Thread):
+    def run(self):
+        print(&apos;我在新线程中哟!&apos;)
+
+t = MyThread()
+t.start()
+</code></pre><p>线程在并发时运行效率可以大大的提高,看下面这个栗子:<br>单线程:</p>
+<pre><code>:::python
+import threading
+import time
+
+def thfun():
+    s = 0
+    for i in range(30):
+            s += i
+            time.sleep(0.1)
+    print(s)
+
+if __name__ == &apos;__main__&apos;:
+    t = time.time()
+    thfun()
+    thfun()
+    print(&apos;单线程运行时间:&apos;,time.time()-t)
+</code></pre><p>运行结果:</p>
+<pre><code>435
+435
+单线程运行时间: 6.008038520812988
+[Finished in 6.0s]
+</code></pre><p>多线程:</p>
+<pre><code>:::python
+import threading
+import time
+
+def thfun():
+    s = 0
+    for i in range(30):
+        s += i
+        time.sleep(0.1)
+    print(s)
+
+if __name__ == &apos;__main__&apos;:
+    ths = [threading.Thread(target=thfun) for i in range(2)]
+    for th in ths:
+        th.start()
+    t = time.time()
+    for th in ths:
+        th.join()
+    print(&apos;多线程运行时间:&apos;,time.time()-t)
+</code></pre><p>运行结果:</p>
+<pre><code>435
+435
+多线程运行时间: 3.0041489601135254
+[Finished in 3.1s]
+</code></pre><p>##进阶</p>
+<p>守护线程:如果将线程a设置为守护线程,设置方法有a.daemon=True和a.setDaemon(True).在主线程结束时,无论a线程是否结束,都会随主线程<br>一起退出.程序运行中，执行一个主线程，如果主线程又创建一个子线程，主线程和子线程就分兵两路，分别运行，那么当主线程完成想退出时<br>，会检验子线程是否完成。如果子线程未完成，则主线程会等待子线程完成后再退出。但是有时候我们需要的是，只要主线程完成了，<br>不管子线程是否完成，都要和主线程一起退出，这时就可以用setDaemon方法了。<br>来看看栗子吧:<br>程序:</p>
+<pre><code>:::python
+import threading,time
+
+def daefun():
+    print(&apos;daemon start...&apos;)
+    time.sleep(2)
+    print(&apos;daemon end.&apos;)
+
+def ndaefun():
+    print(&apos;ndaemon start...&apos;)
+    time.sleep(1)
+    print(&apos;ndaemon end.&apos;)
+
+d = threading.Thread(target=daefun)
+d.daemon = True
+n = threading.Thread(target=ndaefun)
+print(&apos;main start...&apos;)
+d.start()
+n.start()
+print(&apos;main end.&apos;)
+</code></pre><p>结果:</p>
+<pre><code>main start...
+daemon start...
+ndaemon start...
+main end.
+ndaemon end.
+[Finished in 1.0s
+</code></pre><p>并没有看到打印’daemon end!’因为主程序执行完后,守护线程还没执行完,也跟着结束啦,有点感觉和join()方法相反,而非守护线程,在主程序结束时,依然会执行完.</p>
+<p>##线程互斥锁<br>线程锁的作用是保证在多线程中,让同一块数据在同一时刻只能被一个线程操作,要不数据就容易乱套,所以引入锁的机制.就好比一个全封信箱,很多人想取信或<br>放信.为了防止出错,一次只能去一个人,于是这个人蹦蹦跳跳的去取了要是,开完锁完成操作以后,将信箱锁上,再将要是放回原处,下一个人有蹦蹦跳跳的去取<br>钥匙,打开信箱,操作.<br>代码:</p>
+<pre><code>:::python
+import threading,time
+
+share = 4
+
+class MyThread(threading.Thread):
+    def __init__(self,i):
+        super().__init__()
+        self.i = i
+
+    def run(self):
+        global share
+        for d in range(3):
+            lock.acquire()
+            print(share)
+            share += self.i
+            time.sleep(0.3)
+            print(&apos;+&apos;,self.i,&apos;=&apos;,share)
+            lock.release()
+
+lock = threading.Lock()
+if __name__ == &apos;__main__&apos;:
+    t = MyThread(2)
+    tt = MyThread(6)
+    t.start()
+    tt.start()
+</code></pre><p>运行结果:</p>
+<pre><code>4
++ 2 = 6
+6
++ 2 = 8
+8
++ 2 = 10
+10
++ 6 = 16
+16
++ 6 = 22
+22
++ 6 = 28
+[Finished in 2.9s]
+</code></pre><p>操作数据时,县通过acquire()方法获取锁,获取后在释放之前,因为锁只有一把,其他线程无法操作这块数据.直到通过release()方法释放锁,其他线程才能<br>获得锁,操作数据.锁机制固然好,但要注意避免死锁.在线程间共享多个资源的时候，如果两个线程分别占有一部分资源并且同时等待对方的资源，就会造成死锁</p>
+<p>##Condition对象<br>Python提供的Condition对象提供了对复杂线程同步问题的支持。Condition被称为条件变量，除了提供与Lock类似的acquire和release方法外，<br>还提供了wait和notify方法。</p>
+<p>栗子:生产者通过判断是否生产,消费者通过判断是否消费.</p>
+<pre><code>:::python
+import threading,time
+
+share = 0
+
+share_cond = threading.Condition()
+
+class ProThread(threading.Thread):
+    def __init__(self,):
+        super().__init__()
+        self.name = &apos;Produce&apos;
+
+    def run(self):
+        global share
+        if share_cond.acquire():
+            while True:
+                if not share:
+                    share += 1
+                    print(self.name,share)
+                    share_cond.notify()
+
+                share_cond.wait()
+                time.sleep(0.3)
+
+class CustomThread(threading.Thread):
+    def __init__(self):
+        super().__init__()
+        self.name = &apos;Custom&apos;
+
+    def run(self):
+        global share
+        if share_cond.acquire():
+            while True:
+                if share:
+                    share -= 1
+                    print(self.name,share)
+                    share_cond.notify()
+
+                share_cond.wait()
+                time.sleep(0.3)
+
+
+
+if __name__ == &apos;__main__&apos;:
+    t  = ProThread()
+    t.start()
+
+
+    tt = CustomThread()
+    tt.start()
+</code></pre><p>结果:</p>
+<pre><code>Produce 1
+Custom 0
+Produce 1
+Custom 0
+Produce 1
+Custom 0
+Produce 1
+Custom 0
+Produce 1
+Custom 0
+Produce 1
+Custom 0
+Produce 1
+Custom 0
+.....
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://liuchao.site/2016/12/05/Python并发编程之线程总结/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/05/first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">first blog</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Python并发编程之线程总结" data-title="" data-url="http://liuchao.site/2016/12/05/Python并发编程之线程总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"liuchaopy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Fantasy
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col" v-bind:class="{ show: isShow, hide: isShow === false }" v-on:click="stop($event)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" v-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" v-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" v-show="search===''"></i>
+          <i class="icon-close icon" v-show="search!==''" v-on:click="clearChose($event)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" v-on:click="toggleTag($event)" v-bind:checked="showTags">
+          </label>
+          <ul class="article-tag-list" v-bind:class="{ show: showTags }">
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p v-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" v-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" v-for="item in items" v-show="!item.isHide">
+            <a v-bind:href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>{{ item.title }}</a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span>{{ item.date|dateformat }}</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span v-for="tag in item.tags" v-on:click="choseTag($event, tag.name)">#{{ tag.name }}</span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me" v-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">lala</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

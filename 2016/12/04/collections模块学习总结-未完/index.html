@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://liuchao.site">
+  <title>collections模块学习总结-未完 | Fantasy的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python内置的数据类型如list,tupple,dict已经非常强大啦,今天发现一个更强大的标准库:collections在原来的基础上有添加了几种额外的数据类型:　　Counter:计数器,dict的子类　　deque:双端队列,可以快速的从首尾append和pop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="collections模块学习总结-未完">
+<meta property="og:url" content="http://liuchao.site/2016/12/04/collections模块学习总结-未完/index.html">
+<meta property="og:site_name" content="Fantasy的个人博客">
+<meta property="og:description" content="Python内置的数据类型如list,tupple,dict已经非常强大啦,今天发现一个更强大的标准库:collections在原来的基础上有添加了几种额外的数据类型:　　Counter:计数器,dict的子类　　deque:双端队列,可以快速的从首尾append和pop">
+<meta property="og:updated_time" content="2016-12-05T03:33:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="collections模块学习总结-未完">
+<meta name="twitter:description" content="Python内置的数据类型如list,tupple,dict已经非常强大啦,今天发现一个更强大的标准库:collections在原来的基础上有添加了几种额外的数据类型:　　Counter:计数器,dict的子类　　deque:双端队列,可以快速的从首尾append和pop">
+  
+    <link rel="alternative" href="/atom.xml" title="Fantasy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container" v-bind:class="{ show: isCtnShow }">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" v-bind:class="{ show: isShow }">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://7xn3wd.com1.z0.glb.clouddn.com/52d8c966e1d74080.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fantasy</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/program">编程</a></li>
+	        
+				<li><a href="/tags/lifenote">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" v-on:click="openSlider($event, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" v-on:click="openSlider($event, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/liuchaopy" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/fantasy824" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liuchaopy/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="douban" target="_blank" href="https://www.douban.com/people/103793003/" title="douban"><i class="icon-douban"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" v-bind:class="{ show: isShow, hide: isShow === false }">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Fantasy</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://7xn3wd.com1.z0.glb.clouddn.com/52d8c966e1d74080.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fantasy</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/program">编程</a></li>
+		        
+					<li><a href="/tags/lifenote">随笔</a></li>
+		        
+		        
+		        	<li><a href="/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/liuchaopy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/fantasy824" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liuchaopy/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="douban" target="_blank" href="https://www.douban.com/people/103793003/" title="douban"><i class="icon-douban"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-collections模块学习总结-未完" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      collections模块学习总结-未完
+    </h1>
+  
+
+        <a href="/2016/12/04/collections模块学习总结-未完/" class="archive-article-date">
+  	<time datetime="2016-12-04T15:26:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-04</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Python内置的数据类型如list,tupple,dict已经非常强大啦,今天发现一个更强大的标准库:collections<br>在原来的基础上有添加了几种额外的数据类型:<br>　　Counter:计数器,dict的子类<br>　　deque:双端队列,可以快速的从首尾append和pop<br><a id="more"></a> </p>
+<p>####Counter对象<br>Counter是一个dict的子类,它也是无序存储,元素作为字典的keys,元素个数作为字典的value存储<br>应用:   </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; m = [<span class="string">'red'</span>,<span class="string">'yellow'</span>,<span class="string">'red'</span>,<span class="string">'red'</span>,<span class="string">'blue'</span>]  </div><div class="line"><span class="meta">&gt;&gt;</span>&gt; c = Counter(m)     </div><div class="line"><span class="meta">&gt;&gt;</span>&gt; c    </div><div class="line">Counter(&#123;<span class="string">'red'</span>: <span class="number">3</span>, <span class="string">'yellow'</span>: <span class="number">1</span>, <span class="string">'blue'</span>: <span class="number">1</span>&#125;)    </div><div class="line"><span class="meta">&gt;&gt;</span>&gt; c[<span class="string">'red'</span>]  </div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
+<p>Counter的三种特有方法:<br>elements()<br>  返回一个列举所有元素的迭代器,上代码:  </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; c = Counter(a=<span class="number">4</span>, b=<span class="number">2</span>, c=<span class="number">0</span>, d=-<span class="number">2</span>)  </div><div class="line"><span class="meta">&gt;&gt;</span>&gt; list(c.elements())</div><div class="line">[<span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>]</div></pre></td></tr></table></figure>
+<p>most_common([n])<br>列出计数最大的n个元素  </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; Counter(<span class="string">'abracadabra'</span>).most_common(<span class="number">3</span>)</div><div class="line">[(<span class="string">'a'</span>, <span class="number">5</span>), (<span class="string">'r'</span>, <span class="number">2</span>), (<span class="string">'b'</span>, <span class="number">2</span>)]</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; Counter(<span class="string">'abracadabra'</span>).most_common(<span class="number">4</span>)</div><div class="line">[(<span class="string">'a'</span>, <span class="number">5</span>), (<span class="string">'r'</span>, <span class="number">2</span>), (<span class="string">'b'</span>, <span class="number">2</span>), (<span class="string">'c'</span>, <span class="number">1</span>)]</div></pre></td></tr></table></figure>
+<p>subtract([iterable-or-mapping])<br>元素被扣除,从一个迭代器或另外一个mapping或计数器,有点像dict的update(),但不是那样取代元素    </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; c = Counter(a=<span class="number">4</span>, b=<span class="number">2</span>, c=<span class="number">0</span>, d=-<span class="number">2</span>)  </div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d = Counter(a=<span class="number">1</span>, b=<span class="number">2</span>, c=<span class="number">3</span>, d=<span class="number">4</span>)  </div><div class="line"><span class="meta">&gt;&gt;</span>&gt; c.subtract(d)  </div><div class="line"><span class="meta">&gt;&gt;</span>&gt; c  </div><div class="line">Counter(&#123;<span class="string">'a'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="number">0</span>, <span class="string">'c'</span>: -<span class="number">3</span>, <span class="string">'d'</span>: -<span class="number">6</span>&#125;)</div></pre></td></tr></table></figure>
+<p>当然Counter是dict的子类,自然也支持dict的那些方法咯   </p>
+<p>deque类<br>全称:“double-ended queue” 说白了就是双端队列,可以在头尾都进行添加和删除<br>尽管list也支持类似的操作:如 pop(0)和 insert(0,v)但两者的时间复杂度不一样,list这样的操作是O(n)<br>,而deque为O(1)   </p>
+<p>方法:<br>append(x) 末尾添加<br>appendleft(x) 首部添加<br>clear() 删除所有元素<br>count(x) 统计x的个数<br>extend(iterable) 在deque右边扩展,从itable中添加元素<br>extendleft(iterable) 同理<br>pop()<br>popleft()<br>reverse()反转<br>remove(value) 一处第一个出现的value,后面的value保留<br>rotate(n) 这个方法比较特殊,将deque往右移n位  如果n为负,则为左移<br>deque(maxlen=10) 限制双端队列的长度,当满了的时候再添加,最老的元素会被删除,新元素添加进来   </p>
+<p>举个栗子   </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; from collections import deque</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d = deque(<span class="string">'ghi'</span>)                 <span class="comment"># make a new deque with three items</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; for elem in <span class="symbol">d:</span>                   <span class="comment"># iterate over the deque's elements</span></div><div class="line">...     print elem.upper()</div><div class="line">G</div><div class="line">H</div><div class="line">I</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.append(<span class="string">'j'</span>)                    <span class="comment"># add a new entry to the right side</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.appendleft(<span class="string">'f'</span>)                <span class="comment"># add a new entry to the left side</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d                                <span class="comment"># show the representation of the deque</span></div><div class="line">deque([<span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>])</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.pop()                          <span class="comment"># return and remove the rightmost item</span></div><div class="line"><span class="string">'j'</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.popleft()                      <span class="comment"># return and remove the leftmost item</span></div><div class="line"><span class="string">'f'</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; list(d)                          <span class="comment"># list the contents of the deque</span></div><div class="line">[<span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>]</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d[<span class="number">0</span>]                             <span class="comment"># peek at leftmost item</span></div><div class="line"><span class="string">'g'</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d[-<span class="number">1</span>]                            <span class="comment"># peek at rightmost item</span></div><div class="line"><span class="string">'i'</span></div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; list(reversed(d))                <span class="comment"># list the contents of a deque in reverse</span></div><div class="line">[<span class="string">'i'</span>, <span class="string">'h'</span>, <span class="string">'g'</span>]</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; <span class="string">'h'</span> in d                         <span class="comment"># search the deque</span></div><div class="line">True</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.extend(<span class="string">'jkl'</span>)                  <span class="comment"># add multiple elements at once</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d</div><div class="line">deque([<span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span>])</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.rotate(<span class="number">1</span>)                      <span class="comment"># right rotation</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d</div><div class="line">deque([<span class="string">'l'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>])</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.rotate(-<span class="number">1</span>)                     <span class="comment"># left rotation</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d</div><div class="line">deque([<span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span>])</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; deque(reversed(d))               <span class="comment"># make a new deque in reverse order</span></div><div class="line">deque([<span class="string">'l'</span>, <span class="string">'k'</span>, <span class="string">'j'</span>, <span class="string">'i'</span>, <span class="string">'h'</span>, <span class="string">'g'</span>])</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.clear()                        <span class="comment"># empty the deque</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.pop()                          <span class="comment"># cannot pop from an empty deque</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;pyshell#6&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> -toplevel-</div><div class="line">    d.pop()</div><div class="line"><span class="symbol">IndexError:</span> pop from an empty deque</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d.extendleft(<span class="string">'abc'</span>)              <span class="comment"># extendleft() reverses the input order</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; d</div><div class="line">deque([<span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>])</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/program/">program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://liuchao.site/2016/12/04/collections模块学习总结-未完/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/04/django实现登陆后返回原页面/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          django实现登陆后返回原页面
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/04/socket可重用套接字地址/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">socket可重用套接字地址</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="collections模块学习总结-未完" data-title="collections模块学习总结-未完" data-url="http://liuchao.site/2016/12/04/collections模块学习总结-未完/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"liuchaopy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Fantasy
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col" v-bind:class="{ show: isShow, hide: isShow === false }" v-on:click="stop($event)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" v-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" v-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" v-show="search===''"></i>
+          <i class="icon-close icon" v-show="search!==''" v-on:click="clearChose($event)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" v-on:click="toggleTag($event)" v-bind:checked="showTags">
+          </label>
+          <ul class="article-tag-list" v-bind:class="{ show: showTags }">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">program</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">django</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">tornado</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p v-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" v-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" v-for="item in items" v-show="!item.isHide">
+            <a v-bind:href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>{{ item.title }}</a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span>{{ item.date|dateformat }}</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span v-for="tag in item.tags" v-on:click="choseTag($event, tag.name)">#{{ tag.name }}</span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me" v-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">lala</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

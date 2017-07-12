@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://liuchao.site">
+  <title>二叉树遍历及计算深度-Python实现 | Fantasy的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="递归实现:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树遍历及计算深度-Python实现">
+<meta property="og:url" content="http://liuchao.site/2016/12/04/二叉树遍历及计算深度-Python实现/index.html">
+<meta property="og:site_name" content="Fantasy的个人博客">
+<meta property="og:description" content="递归实现:">
+<meta property="og:updated_time" content="2016-12-05T04:41:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二叉树遍历及计算深度-Python实现">
+<meta name="twitter:description" content="递归实现:">
+  
+    <link rel="alternative" href="/atom.xml" title="Fantasy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container" v-bind:class="{ show: isCtnShow }">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" v-bind:class="{ show: isShow }">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://7xn3wd.com1.z0.glb.clouddn.com/52d8c966e1d74080.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fantasy</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/program">编程</a></li>
+	        
+				<li><a href="/tags/lifenote">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" v-on:click="openSlider($event, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" v-on:click="openSlider($event, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/liuchaopy" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/fantasy824" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liuchaopy/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="douban" target="_blank" href="https://www.douban.com/people/103793003/" title="douban"><i class="icon-douban"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" v-bind:class="{ show: isShow, hide: isShow === false }">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Fantasy</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://7xn3wd.com1.z0.glb.clouddn.com/52d8c966e1d74080.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fantasy</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/program">编程</a></li>
+		        
+					<li><a href="/tags/lifenote">随笔</a></li>
+		        
+		        
+		        	<li><a href="/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/liuchaopy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/fantasy824" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liuchaopy/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="douban" target="_blank" href="https://www.douban.com/people/103793003/" title="douban"><i class="icon-douban"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-二叉树遍历及计算深度-Python实现" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      二叉树遍历及计算深度-Python实现
+    </h1>
+  
+
+        <a href="/2016/12/04/二叉树遍历及计算深度-Python实现/" class="archive-article-date">
+  	<time datetime="2016-12-04T15:26:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-04</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>递归实现:<br><a id="more"></a><br>代码:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>(<span class="title">object</span>):</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, data=None, left=None, right=None)</span></span>:</div><div class="line">        <span class="keyword">self</span>.data = data</div><div class="line">        <span class="keyword">self</span>.left = left</div><div class="line">        <span class="keyword">self</span>.right = right</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinTree</span>(<span class="title">object</span>):</span></div><div class="line">    <span class="string">""</span><span class="string">"docstring for BinTree"</span><span class="string">""</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, root)</span></span>:</div><div class="line">        <span class="keyword">self</span>.root = root</div><div class="line">        <span class="comment"># 前序遍历</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pretraver</span><span class="params">(<span class="keyword">self</span>, treenode)</span></span>:</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="symbol">treenode:</span></div><div class="line">            <span class="keyword">return</span></div><div class="line">        print(treenode.data)</div><div class="line">        <span class="keyword">self</span>.pretraver(treenode.left)</div><div class="line">        <span class="keyword">self</span>.pretraver(treenode.right)</div><div class="line">        <span class="comment"># 中序遍历</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">midtraver</span><span class="params">(<span class="keyword">self</span>, treenode)</span></span>:</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="symbol">treenode:</span></div><div class="line">            <span class="keyword">return</span></div><div class="line">        <span class="keyword">self</span>.midtraver(treenode.left)</div><div class="line">        print(treenode.data)</div><div class="line">        <span class="keyword">self</span>.midtraver(treenode.right)</div><div class="line">        <span class="comment"># 后序遍历</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">aftertraver</span><span class="params">(<span class="keyword">self</span>, treenode)</span></span>:</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="symbol">treenode:</span></div><div class="line">            <span class="keyword">return</span></div><div class="line">        <span class="keyword">self</span>.aftertraver(treenode.left)</div><div class="line">        <span class="keyword">self</span>.aftertraver(treenode.right)</div><div class="line">        print(treenode.data)</div><div class="line">        <span class="comment"># 计算深度</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getdepth</span><span class="params">(<span class="keyword">self</span>, treenode)</span></span>:</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="symbol">treenode:</span></div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        left = <span class="number">1</span></div><div class="line">        right = <span class="number">1</span></div><div class="line">        left += <span class="keyword">self</span>.getdepth(treenode.left)</div><div class="line">        right += <span class="keyword">self</span>.getdepth(treenode.right)</div><div class="line">        <span class="keyword">if</span> left &gt;= <span class="symbol">right:</span></div><div class="line">            <span class="keyword">return</span> left</div><div class="line">        <span class="symbol">else:</span></div><div class="line">            <span class="keyword">return</span> right</div><div class="line"></div><div class="line">            <span class="comment"># 统计节点数:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getsize</span><span class="params">(<span class="keyword">self</span>, treenode)</span></span>:</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="symbol">treenode:</span></div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        result = <span class="keyword">self</span>.getsize(treenode.left) + <span class="keyword">self</span>.getsize(treenode.right) + <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> result</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name_<span class="number">_</span> == <span class="string">'__main__'</span>:</div><div class="line">    root = Node(<span class="string">'D'</span>, Node(<span class="string">'B'</span>, Node(<span class="string">'A'</span>), Node(<span class="string">'C'</span>)), Node(<span class="string">'E'</span>, right=Node(<span class="string">'G'</span>, Node(<span class="string">'F'</span>, Node(<span class="string">'H'</span>)))))</div><div class="line">    bt = BinTree(root)</div><div class="line">    print(<span class="string">'prev:'</span>)</div><div class="line">    bt.pretraver(bt.root)</div><div class="line">    print(<span class="string">'mid:'</span>)</div><div class="line">    bt.midtraver(bt.root)</div><div class="line">    print(<span class="string">'after:'</span>)</div><div class="line">    bt.aftertraver(bt.root)</div><div class="line">    print(<span class="string">'Depth of the tree'</span>)</div><div class="line">    depth = bt.getdepth(bt.root)</div><div class="line">    print(depth)</div><div class="line">    print(<span class="string">'summer of nodes:'</span>)</div><div class="line">    number = bt.getsize(bt.root)</div><div class="line">    print(number)</div></pre></td></tr></table></figure>
+<p>###非递归实现:</p>
+<p>####前序<br>算法步骤:</p>
+<p>1 访问结点p,并将p入栈<br>2  判断p的左结点是否为空,若为空,则取栈顶结点,并将其出栈,然后将栈顶结点的右结点为p,并循环至1.<br>若不为空,则将p的左结点置为当前结点<br>3 直到p为None 且栈为空,则遍历结束     </p>
+<p>代码:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def pretraver(root):</div><div class="line">    <span class="keyword">p</span> = root</div><div class="line">    s = []</div><div class="line">    <span class="keyword">while</span> <span class="keyword">p</span> <span class="built_in">or</span> <span class="variable">s:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">p</span>:</div><div class="line">            <span class="keyword">print</span>(<span class="keyword">p</span>.data)</div><div class="line">			s.<span class="keyword">append</span>(<span class="keyword">p</span>)</div><div class="line">			<span class="keyword">p</span> = <span class="keyword">p</span>.<span class="keyword">left</span></div><div class="line">		<span class="keyword">if</span> <span class="variable">s:</span></div><div class="line">			<span class="keyword">p</span> = s.<span class="keyword">pop</span>()</div><div class="line">			<span class="keyword">p</span> = <span class="keyword">p</span>.<span class="keyword">right</span></div></pre></td></tr></table></figure>
+<p>###中序<br>根据中序遍历的顺序，对于任一结点，优先访问其左孩子，而左孩子结点又可以看做一根结点，然后继续访问其左孩子结点，直到遇到左孩子结点为空的结点才进行访问，然后按相同的规则访问其右子树。因此其处理过程如下：<br>对于任一结点P，<br>1)若其左孩子不为空，则将P入栈并将P的左孩子置为当前的P，然后对当前结点P再进行相同的处理；<br>2)若其左孩子为空，则取栈顶元素并进行出栈操作，访问该栈顶结点，然后将当前的P置为栈顶结点的右孩子；<br>3)直到P为NULL并且栈为空则遍历结束中序          </p>
+<p>代码:  </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def midtraver(root):</div><div class="line">	<span class="keyword">p</span> = root</div><div class="line">	s = []</div><div class="line">	<span class="keyword">while</span> <span class="keyword">p</span> <span class="built_in">or</span> <span class="variable">s:</span></div><div class="line">		<span class="keyword">while</span> <span class="keyword">p</span>:</div><div class="line">			s.<span class="keyword">append</span>(<span class="keyword">p</span>)</div><div class="line">			<span class="keyword">p</span>=<span class="keyword">p</span>.<span class="keyword">left</span></div><div class="line">		<span class="keyword">if</span> <span class="variable">s:</span></div><div class="line">			<span class="keyword">p</span> = s.<span class="keyword">pop</span>()</div><div class="line">			<span class="keyword">print</span>(<span class="keyword">p</span>.data)</div><div class="line">			<span class="keyword">p</span> = <span class="keyword">p</span>.<span class="keyword">right</span></div></pre></td></tr></table></figure>
+<p>###后序:<br>要保证根结点在左孩子和右孩子访问之后才能访问，因此对于任一结点P，先将其入栈。如果P不存在左孩子和右孩子，则可以直接访问它；或者P存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。若非上述两种情况，则将P的右孩子和左孩子依次入栈，这样就保证了每次取栈顶元素的时候，左孩子在右孩子前面被访问，左孩子和右孩子都在根结点前面被访问。</p>
+<p>代码:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">def aftertraver(root):</div><div class="line">	s = []</div><div class="line">	cur = None   #当前结点</div><div class="line">	<span class="keyword">pre</span> = None   #前一次访问的结点</div><div class="line">	s.<span class="keyword">append</span>(root)</div><div class="line">	<span class="keyword">while</span> <span class="variable">s:</span></div><div class="line">		cur = s[-<span class="number">1</span>]</div><div class="line">		<span class="keyword">if</span> ((not cur.<span class="keyword">left</span>) <span class="built_in">and</span> (not cur.<span class="keyword">right</span>)) <span class="built_in">or</span> (<span class="keyword">pre</span> <span class="built_in">and</span> (<span class="keyword">pre</span>==cur.<span class="keyword">left</span> <span class="built_in">or</span> <span class="keyword">pre</span>==cur.<span class="keyword">right</span>)):</div><div class="line">			<span class="keyword">print</span>(cur.data)</div><div class="line">			s.<span class="keyword">pop</span>()</div><div class="line">			<span class="keyword">pre</span> = cur</div><div class="line">	</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			<span class="keyword">if</span> cur.righ<span class="variable">t:</span></div><div class="line">				s.<span class="keyword">append</span>(cur.<span class="keyword">right</span>)</div><div class="line">			<span class="keyword">if</span> cur.lef<span class="variable">t:</span></div><div class="line">				s.<span class="keyword">append</span>(cur.<span class="keyword">left</span>)</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/program/">program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://liuchao.site/2016/12/04/二叉树遍历及计算深度-Python实现/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/04/ubuntu命令行拨号链接和wifi/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ubuntu命令行拨号链接和wifi
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/04/Ajax提交Form登陆表单遇到的小坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ajax提交Form登陆表单遇到的小坑</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="二叉树遍历及计算深度-Python实现" data-title="二叉树遍历及计算深度-Python实现" data-url="http://liuchao.site/2016/12/04/二叉树遍历及计算深度-Python实现/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"liuchaopy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Fantasy
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col" v-bind:class="{ show: isShow, hide: isShow === false }" v-on:click="stop($event)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" v-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" v-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" v-show="search===''"></i>
+          <i class="icon-close icon" v-show="search!==''" v-on:click="clearChose($event)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" v-on:click="toggleTag($event)" v-bind:checked="showTags">
+          </label>
+          <ul class="article-tag-list" v-bind:class="{ show: showTags }">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">program</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">django</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">tornado</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p v-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" v-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" v-for="item in items" v-show="!item.isHide">
+            <a v-bind:href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>{{ item.title }}</a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span>{{ item.date|dateformat }}</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span v-for="tag in item.tags" v-on:click="choseTag($event, tag.name)">#{{ tag.name }}</span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me" v-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">lala</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

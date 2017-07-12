@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://liuchao.site">
+  <title>numpy学习笔记 | Fantasy的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记录一下numpy一些函数的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy学习笔记">
+<meta property="og:url" content="http://liuchao.site/2016/12/04/numpy学习笔记/index.html">
+<meta property="og:site_name" content="Fantasy的个人博客">
+<meta property="og:description" content="记录一下numpy一些函数的使用">
+<meta property="og:updated_time" content="2016-12-05T03:44:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="numpy学习笔记">
+<meta name="twitter:description" content="记录一下numpy一些函数的使用">
+  
+    <link rel="alternative" href="/atom.xml" title="Fantasy的个人博客" type="application/atom+xml">
+  
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container" v-bind:class="{ show: isCtnShow }">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" v-bind:class="{ show: isShow }">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="http://7xn3wd.com1.z0.glb.clouddn.com/52d8c966e1d74080.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Fantasy</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/program">编程</a></li>
+	        
+				<li><a href="/tags/lifenote">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" v-on:click="openSlider($event, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" v-on:click="openSlider($event, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/liuchaopy" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/fantasy824" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liuchaopy/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="douban" target="_blank" href="https://www.douban.com/people/103793003/" title="douban"><i class="icon-douban"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" v-bind:class="{ show: isShow, hide: isShow === false }">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Fantasy</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="http://7xn3wd.com1.z0.glb.clouddn.com/52d8c966e1d74080.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Fantasy</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/tags/program">编程</a></li>
+		        
+					<li><a href="/tags/lifenote">随笔</a></li>
+		        
+		        
+		        	<li><a href="/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/liuchaopy" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/fantasy824" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/liuchaopy/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="douban" target="_blank" href="https://www.douban.com/people/103793003/" title="douban"><i class="icon-douban"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-numpy学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      numpy学习笔记
+    </h1>
+  
+
+        <a href="/2016/12/04/numpy学习笔记/" class="archive-article-date">
+  	<time datetime="2016-12-04T15:26:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-04</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录一下numpy一些函数的使用<br><a id="more"></a></p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>:指定数据类型：dtype=''</div><div class="line"><span class="number">2</span>:改变数组维度 a:如：b=<span class="built_in">np</span>.arange(<span class="number">24</span>).reshape(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">             b:展平，变成一维 b.ravel() 或 b.<span class="built_in">flatten</span>() <span class="built_in">flatten</span>会请求分配内存来保存结果</div><div class="line">             c:转置 b.<span class="built_in">transpose</span>() 或b.T</div><div class="line">             d:b.resize((<span class="number">2</span>,<span class="number">12</span>))和reshape()</div><div class="line"><span class="number">3</span>:数组的组合：a:水平组合：<span class="built_in">np</span>.hstack((a,b))或<span class="built_in">np</span>.concatenate((a,b),axis=<span class="number">1</span>)</div><div class="line">		    b:垂直组合：<span class="built_in">np</span>.vstack((a,b))或npconcatenate((a,b),axis=<span class="number">0</span>)</div><div class="line">		    c:深度组合：<span class="built_in">np</span>.dstack((a,b)</div><div class="line"><span class="number">4</span>:数组分割：a:水平分割：<span class="built_in">np</span>.hsplit(a,<span class="number">3</span>) 或 <span class="built_in">np</span>.<span class="built_in">split</span>(a,<span class="number">3</span>,axis=<span class="number">1</span>)  分割成三列</div><div class="line">          b:垂直分割：<span class="built_in">np</span>.vsplit(a,<span class="number">3</span>) 或<span class="built_in">np</span>.<span class="built_in">split</span>(a,<span class="number">3</span>,axis=<span class="number">0</span>)</div><div class="line">          c:深度分割：<span class="built_in">np</span>.dsplit(c,<span class="number">3</span>)</div><div class="line"><span class="number">5</span>:数组的属性：.ndim属性 列出数组的纬度</div><div class="line">            .size属性 列出数组元素的总个数</div><div class="line">            .itemsize 元素在内存中所占的字节数</div><div class="line">            .nbytes 数组所占存储空间 </div><div class="line">            .T 转置</div><div class="line">            .<span class="built_in">real</span> 复数数组的实部</div><div class="line">            .imag 复数数组的虚部</div><div class="line"><span class="number">6</span>：常用函数   a: <span class="built_in">np</span>.eye(<span class="number">3</span>) 单位矩阵：</div><div class="line">			b: <span class="built_in">np</span>.savetxt(<span class="string">"eye.txt"</span>,a)  数据存储</div><div class="line">			c: c,v = <span class="built_in">np</span>.loadtxt('data.csv',delimiter=',',usecols=(<span class="number">6</span>,<span class="number">7</span>),unpack=True)读入CSV文件： </div><div class="line">			d: <span class="built_in">np</span>.average(c,weights=v)加权平均数</div><div class="line">			e: <span class="built_in">np</span>.<span class="built_in">mean</span>(c) 算数平均数 </div><div class="line">			f: <span class="built_in">np</span>.<span class="built_in">max</span>() <span class="built_in">np</span>.<span class="built_in">min</span>() 最大值最小值 </div><div class="line">			g: <span class="built_in">np</span>.ptn()数组范围，即最大值最小值之差：</div><div class="line">			h: <span class="built_in">np</span>.<span class="built_in">median</span>()中位数：</div><div class="line">			i: <span class="built_in">np</span>.msort()排序：</div><div class="line">			j: <span class="built_in">np</span>.<span class="built_in">var</span>()方差：</div><div class="line">			k: <span class="built_in">np</span>.<span class="built_in">std</span>()标准差：</div><div class="line">			l: <span class="built_in">np</span>.<span class="built_in">diff</span>()数组相邻元素的差值构成的数组</div><div class="line">			m: <span class="built_in">np</span>.<span class="built_in">log</span>()自然对数In :</div><div class="line">			n: <span class="built_in">np</span>.where(c&gt;<span class="number">2</span>)筛选: 根据指定的条件返回所有满足条件的数组元素的索引值</div><div class="line">			o: <span class="built_in">np</span>.take(m,indexarray)获取索引值相对应的元素质：</div><div class="line">			p: <span class="built_in">np</span>.argmax 和 <span class="built_in">np</span>.argmin 返回数组中最大和最小元素的索引值 </div><div class="line">			q: <span class="built_in">np</span>.maximum(a,b,c)返回abc 之中第一个元素的最大值，第二个元素的最大值。。。</div><div class="line">			r: <span class="built_in">np</span>.ones()  全是<span class="number">1</span>的数组</div><div class="line">			s: <span class="built_in">np</span>.convolve(weights,c) 卷积</div><div class="line">			t: <span class="built_in">np</span>.<span class="built_in">exp</span>(x) 指数函数 即e**x</div><div class="line">			u: <span class="built_in">np</span>.linspace(f,e,s)根据起始值，终止值，步长产生一个数组</div><div class="line">			v: a.fill(<span class="number">8</span>)  将a的值全部设为<span class="number">8</span></div><div class="line">			w: <span class="built_in">np</span>.linalg.lstsq(A,y)[<span class="number">0</span>] 求解Ap = y p的值 求解多元一次方程组</div><div class="line">			x: <span class="built_in">np</span>.dot(a,b) ａｂ的乘积</div><div class="line">			y: <span class="built_in">np</span>.intersectld(a,b) ab数组的｀相同元素</div><div class="line">			z: a.clip(<span class="number">1</span>,<span class="number">2</span>)　修剪数组　比１小的都换成１，比２大的都换成２</div><div class="line">			　　　a.compress(a&gt;<span class="number">2</span>) 返回满足条件的数组元素</div><div class="line"></div><div class="line">			   b.prod()　b中各元素相乘　和arange结合可以求阶乘</div><div class="line">			   b.cumprod  返回ｂ中各元素的累积乘积</div><div class="line"><span class="number">7</span>:便捷函数:</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">cov</span>(X,Y)           求两矩阵的协方差</div><div class="line">         a.diagonal()          求对角线上的元素</div><div class="line">         a.<span class="built_in">trace</span>()    		   求矩阵迹,对角线上元素之和</div><div class="line">         <span class="built_in">np</span>.corrcoef(a,b)      相当于covariance / (a.<span class="built_in">std</span>() * b.<span class="built_in">std</span>())  两向量相关系数为协方差除两标准差的乘积</div><div class="line">         <span class="built_in">np</span>.ployfit(x,y,<span class="number">3</span>)    拟合,用三次多项式 得到多项式的系数poly</div><div class="line">         <span class="built_in">np</span>.polyval(poly,x[-<span class="number">1</span>]+<span class="number">1</span>)   推断下一个值</div><div class="line">         <span class="built_in">np</span>.roots(poly)   求多项式的根</div><div class="line">         <span class="built_in">np</span>.polyder(poly) 求多项式导函数</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">sign</span>()  返回元素符号,正为<span class="number">1</span> 负为-<span class="number">1</span></div><div class="line">         <span class="built_in">np</span>.piecewise() 分段给定值 如  <span class="built_in">np</span>.piecewise(x, [x &lt; <span class="number">0</span>, x &gt;= <span class="number">0</span>], [<span class="built_in">lambda</span> x: -x, <span class="built_in">lambda</span> x: x])</div><div class="line">                                 或: <span class="built_in">np</span>.piecewise(x, [x &lt; <span class="number">0</span>, x &gt;= <span class="number">0</span>], [-<span class="number">1</span>, <span class="number">1</span>])</div><div class="line">         <span class="built_in">np</span>.array_equal(a,b)  检验两数组是否相同</div><div class="line">         vfunc=<span class="built_in">np</span>.vertorize(func)  分别作用于一个函数,相当于Python的<span class="built_in">map</span>函数</div><div class="line">         <span class="built_in">np</span>.hanning(N)  计算权重,生成长度为N的窗口</div><div class="line">         <span class="built_in">np</span>.polysub(a,b) 对多项式相减</div><div class="line">         <span class="built_in">np</span>.isreal()  判断数组是否为实数</div><div class="line">         <span class="built_in">np</span>.select(condlist, choicelist)  根据条件筛选</div><div class="line"><span class="number">8</span>:矩阵和通用函数：</div><div class="line">         A = <span class="built_in">np</span>.mat('<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>;<span class="number">4</span> <span class="number">5</span> <span class="number">6</span>;<span class="number">7</span> <span class="number">8</span> <span class="number">9</span>') 创建矩阵</div><div class="line">         A.T A.I转置矩阵和逆矩阵</div><div class="line">         <span class="built_in">np</span>.bmat(<span class="string">"A B;A B"</span>)创建分块复合矩阵</div><div class="line">         <span class="built_in">np</span>.frompyfunc(func, nin, nout)  创建通用函数 nin:输入参数个数，nout输出对象个数</div><div class="line">         通用函数的四个方法：</div><div class="line">                          reduce       沿着指定的轴，递归作用于数组，</div><div class="line">                          accumulate   和reduce的区别是会返回中间值</div><div class="line">                          reduceat     </div><div class="line">                          outer</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">divide</span>(a,b) 除法，结果只保留整数部分</div><div class="line">         <span class="built_in">np</span>.true_divide(a,b) 除法，结果保留小数</div><div class="line">         <span class="built_in">np</span>.floor_divide()  除法，只保留整数结果，但加.</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">remainder</span>()  返回两数组相处后的余数</div><div class="line"></div><div class="line"> <span class="number">9</span>:linalg模块</div><div class="line">         <span class="built_in">np</span>.linalg,inv(a)  求逆矩阵</div><div class="line">         <span class="built_in">np</span>.linalg.<span class="built_in">solve</span>(A,b)  求解线性方程组</div><div class="line">         <span class="built_in">np</span>.linalg.eigvals()  求特征值</div><div class="line">         m,n=<span class="built_in">np</span>.linalg.eig(A) 求特征值和特征向量</div><div class="line">         <span class="built_in">np</span>.linalg.pinv()    求广义逆矩阵</div><div class="line">         <span class="built_in">np</span>.linalg.det(A)   计算矩阵的行列式</div><div class="line"> <span class="number">10</span>：<span class="built_in">fft</span>模块</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">fft</span>.<span class="built_in">fft</span>(a)  求傅里叶变换</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">fft</span>.fftshift()  傅里叶变换后移频</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">fft</span>.ifftshift()  移频逆操作</div><div class="line"></div><div class="line">         <span class="built_in">np</span>.<span class="built_in">random</span>.<span class="built_in">binomial</span>(n,p,size)  计算二项式分布</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">random</span>.<span class="built_in">hypergeometric</span>(ngood, nbad, nsample, size=None)  超几何分布</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">random</span>.normal(size=N)  正太分布</div><div class="line">         <span class="built_in">np</span>.<span class="built_in">random</span>.lognormal(size=N) 对数正太分布</div><div class="line"></div><div class="line"><span class="number">11</span>：专用函数：</div><div class="line">		 <span class="built_in">np</span>.searchsorted(a, v, side='left') 在数组a中插入值v，返回v在数组中的位置</div><div class="line">		 <span class="built_in">np</span>.lexsort(a,b)   先根据a，若相同根据b来排序。a,b按索引值对应。</div><div class="line">		 <span class="built_in">np</span>.<span class="built_in">i0</span>()  第一类修正的零阶贝塞尔函数</div><div class="line">		 <span class="built_in">np</span>.sinc()  sinc函数</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/program/">program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://liuchao.site/2016/12/04/numpy学习笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/04/Python并发编程之线程总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Python并发编程之线程总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/04/django实现登陆后返回原页面/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">django实现登陆后返回原页面</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="numpy学习笔记" data-title="numpy学习笔记" data-url="http://liuchao.site/2016/12/04/numpy学习笔记/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"liuchaopy"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Fantasy
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+    
+<div class="tools-col" v-bind:class="{ show: isShow, hide: isShow === false }" v-on:click="stop($event)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" v-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" v-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" v-show="search===''"></i>
+          <i class="icon-close icon" v-show="search!==''" v-on:click="clearChose($event)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" v-on:click="toggleTag($event)" v-bind:checked="showTags">
+          </label>
+          <ul class="article-tag-list" v-bind:class="{ show: showTags }">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">program</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">django</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" v-on:click="choseTag($event)" class="color3" style="font-size: 12px;">tornado</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p v-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" v-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" v-for="item in items" v-show="!item.isHide">
+            <a v-bind:href="item.path|urlformat" class="search-title"><i class="icon-quo-left icon"></i>{{ item.title }}</a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span>{{ item.date|dateformat }}</span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span v-for="tag in item.tags" v-on:click="choseTag($event, tag.name)">#{{ tag.name }}</span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me" v-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">lala</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
