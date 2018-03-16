@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>collections模块学习总结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/numpy学习笔记/index.html">
+  <meta name="description" content="Python内置的数据类型如list,tupple,dict已经非常强大啦,今天发现一个更强大的标准库:collections在原来的基础上有添加了几种额外的数据类型:　　Counter:计数器,dict的子类　　deque:双端队列,可以快速的从首尾append和pop">
+<meta name="keywords" content="编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="collections模块学习总结">
+<meta property="og:url" content="http://yoursite.com/2016/03/16/collections模块学习总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:updated_time" content="2017-07-12T05:26:41.000Z">
+<meta property="og:description" content="Python内置的数据类型如list,tupple,dict已经非常强大啦,今天发现一个更强大的标准库:collections在原来的基础上有添加了几种额外的数据类型:　　Counter:计数器,dict的子类　　deque:双端队列,可以快速的从首尾append和pop">
+<meta property="og:updated_time" content="2018-03-16T14:29:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="collections模块学习总结">
+<meta name="twitter:description" content="Python内置的数据类型如list,tupple,dict已经非常强大啦,今天发现一个更强大的标准库:collections在原来的基础上有添加了几种额外的数据类型:　　Counter:计数器,dict的子类　　deque:双端队列,可以快速的从首尾append和pop">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,12 +160,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-numpy学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-collections模块学习总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      collections模块学习总结
+    </h1>
+  
+
+        
+        <a href="/2016/03/16/collections模块学习总结/" class="archive-article-date">
+  	<time datetime="2016-03-16T14:19:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-16</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>Python内置的数据类型如list,tupple,dict已经非常强大啦,今天发现一个更强大的标准库:collections<br>在原来的基础上有添加了几种额外的数据类型:<br>　　Counter:计数器,dict的子类<br>　　deque:双端队列,可以快速的从首尾append和pop</p>
+<a id="more"></a>
+<h4 id="Counter对象"><a href="#Counter对象" class="headerlink" title="Counter对象"></a>Counter对象</h4><p>Counter是一个dict的子类,它也是无序存储,元素作为字典的keys,元素个数作为字典的value存储<br>应用:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>m = [<span class="string">'red'</span>,<span class="string">'yellow'</span>,<span class="string">'red'</span>,<span class="string">'red'</span>,<span class="string">'blue'</span>]  </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(m)     </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c    </div><div class="line">Counter(&#123;<span class="string">'red'</span>: <span class="number">3</span>, <span class="string">'yellow'</span>: <span class="number">1</span>, <span class="string">'blue'</span>: <span class="number">1</span>&#125;)    </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="string">'red'</span>]  </div><div class="line"><span class="number">3</span></div></pre></td></tr></table></figure>
+<p>Counter的三种特有方法:<br>elements()<br>返回一个列举所有元素的迭代器,上代码:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(a=<span class="number">4</span>, b=<span class="number">2</span>, c=<span class="number">0</span>, d=<span class="number">-2</span>)  </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>list(c.elements())</div><div class="line">[<span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'b'</span>]</div><div class="line">most_common([n])</div></pre></td></tr></table></figure>
+<p>列出计数最大的n个元素</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>Counter(<span class="string">'abracadabra'</span>).most_common(<span class="number">3</span>)</div><div class="line">[(<span class="string">'a'</span>, <span class="number">5</span>), (<span class="string">'r'</span>, <span class="number">2</span>), (<span class="string">'b'</span>, <span class="number">2</span>)]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>Counter(<span class="string">'abracadabra'</span>).most_common(<span class="number">4</span>)</div><div class="line">[(<span class="string">'a'</span>, <span class="number">5</span>), (<span class="string">'r'</span>, <span class="number">2</span>), (<span class="string">'b'</span>, <span class="number">2</span>), (<span class="string">'c'</span>, <span class="number">1</span>)]</div><div class="line">subtract([iterable-<span class="keyword">or</span>-mapping])</div></pre></td></tr></table></figure>
+<p>元素被扣除,从一个迭代器或另外一个mapping或计数器,有点像dict的update(),但不是那样取代元素</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = Counter(a=<span class="number">4</span>, b=<span class="number">2</span>, c=<span class="number">0</span>, d=<span class="number">-2</span>)  </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = Counter(a=<span class="number">1</span>, b=<span class="number">2</span>, c=<span class="number">3</span>, d=<span class="number">4</span>)  </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c.subtract(d)  </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c  </div><div class="line">Counter(&#123;<span class="string">'a'</span>: <span class="number">3</span>, <span class="string">'b'</span>: <span class="number">0</span>, <span class="string">'c'</span>: <span class="number">-3</span>, <span class="string">'d'</span>: <span class="number">-6</span>&#125;)</div></pre></td></tr></table></figure>
+<p>当然Counter是dict的子类,自然也支持dict的那些方法咯</p>
+<p>deque类<br>全称:“double-ended queue” 说白了就是双端队列,可以在头尾都进行添加和删除<br>尽管list也支持类似的操作:如 pop(0)和 insert(0,v)但两者的时间复杂度不一样,list这样的操作是O(n)<br>,而deque为O(1)</p>
+<p>方法:<br>append(x) 末尾添加<br>appendleft(x) 首部添加<br>clear() 删除所有元素<br>count(x) 统计x的个数<br>extend(iterable) 在deque右边扩展,从itable中添加元素<br>extendleft(iterable) 同理<br>pop()<br>popleft()<br>reverse()反转<br>remove(value) 一处第一个出现的value,后面的value保留<br>rotate(n) 这个方法比较特殊,将deque往右移n位 如果n为负,则为左移<br>deque(maxlen=10) 限制双端队列的长度,当满了的时候再添加,最老的元素会被删除,新元素添加进来</p>
+<p>举个栗子</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections <span class="keyword">import</span> deque</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d = deque(<span class="string">'ghi'</span>)                 <span class="comment"># make a new deque with three items</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> elem <span class="keyword">in</span> d:                   <span class="comment"># iterate over the deque's elements</span></div><div class="line"><span class="meta">... </span>    <span class="keyword">print</span> elem.upper()</div><div class="line">G</div><div class="line">H</div><div class="line">I</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.append(<span class="string">'j'</span>)                    <span class="comment"># add a new entry to the right side</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.appendleft(<span class="string">'f'</span>)                <span class="comment"># add a new entry to the left side</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d                                <span class="comment"># show the representation of the deque</span></div><div class="line">deque([<span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.pop()                          <span class="comment"># return and remove the rightmost item</span></div><div class="line"><span class="string">'j'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.popleft()                      <span class="comment"># return and remove the leftmost item</span></div><div class="line"><span class="string">'f'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>list(d)                          <span class="comment"># list the contents of the deque</span></div><div class="line">[<span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="number">0</span>]                             <span class="comment"># peek at leftmost item</span></div><div class="line"><span class="string">'g'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d[<span class="number">-1</span>]                            <span class="comment"># peek at rightmost item</span></div><div class="line"><span class="string">'i'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>list(reversed(d))                <span class="comment"># list the contents of a deque in reverse</span></div><div class="line">[<span class="string">'i'</span>, <span class="string">'h'</span>, <span class="string">'g'</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'h'</span> <span class="keyword">in</span> d                         <span class="comment"># search the deque</span></div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.extend(<span class="string">'jkl'</span>)                  <span class="comment"># add multiple elements at once</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">deque([<span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.rotate(<span class="number">1</span>)                      <span class="comment"># right rotation</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">deque([<span class="string">'l'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.rotate(<span class="number">-1</span>)                     <span class="comment"># left rotation</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">deque([<span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>deque(reversed(d))               <span class="comment"># make a new deque in reverse order</span></div><div class="line">deque([<span class="string">'l'</span>, <span class="string">'k'</span>, <span class="string">'j'</span>, <span class="string">'i'</span>, <span class="string">'h'</span>, <span class="string">'g'</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.clear()                        <span class="comment"># empty the deque</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.pop()                          <span class="comment"># cannot pop from an empty deque</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;pyshell#6&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> -toplevel-</div><div class="line">    d.pop()</div><div class="line">IndexError: pop <span class="keyword">from</span> an empty deque</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d.extendleft(<span class="string">'abc'</span>)              <span class="comment"># extendleft() reverses the input order</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>d</div><div class="line">deque([<span class="string">'c'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>])</div></pre></td></tr></table></figure>
       
 
       
@@ -169,6 +202,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -219,7 +263,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/12/numpy学习笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/03/16/collections模块学习总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -233,20 +277,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/16/new/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/08/socketserver源码学习之多进程和多线程Mixin/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          new
+          socketserver源码学习之多进程和多线程Mixin
         
       </div>
     </a>
   
-  
-    <a href="/2017/03/16/Python并发编程之线程总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python并发编程之线程总结</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 

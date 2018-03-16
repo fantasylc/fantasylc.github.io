@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>Python并发编程之线程总结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/numpy学习笔记/index.html">
+  <meta name="description" content="一个正在运行的程序可以成为一个进程,每个进程管理者他自己的系统状态.比如打开一个播放器来听听歌,播放器这个运行的程序就是一个进程.进程之间是相互独立的,但感觉一个听歌时,我们一边听着歌声,一边看看歌词,一边还刷刷评论,仿佛有几个任务在同时运行着,这一个个的子任务,就是一个个进程创建出来的线程,当然,程序要运行,至少要有一个线程.进程和线程在操作系统的调度下,不断的切换,由于时间极短,感觉是在同时运">
+<meta name="keywords" content="编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python并发编程之线程总结">
+<meta property="og:url" content="http://yoursite.com/2017/03/16/Python并发编程之线程总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:updated_time" content="2017-07-12T05:26:41.000Z">
+<meta property="og:description" content="一个正在运行的程序可以成为一个进程,每个进程管理者他自己的系统状态.比如打开一个播放器来听听歌,播放器这个运行的程序就是一个进程.进程之间是相互独立的,但感觉一个听歌时,我们一边听着歌声,一边看看歌词,一边还刷刷评论,仿佛有几个任务在同时运行着,这一个个的子任务,就是一个个进程创建出来的线程,当然,程序要运行,至少要有一个线程.进程和线程在操作系统的调度下,不断的切换,由于时间极短,感觉是在同时运">
+<meta property="og:updated_time" content="2018-03-16T14:13:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Python并发编程之线程总结">
+<meta name="twitter:description" content="一个正在运行的程序可以成为一个进程,每个进程管理者他自己的系统状态.比如打开一个播放器来听听歌,播放器这个运行的程序就是一个进程.进程之间是相互独立的,但感觉一个听歌时,我们一边听着歌声,一边看看歌词,一边还刷刷评论,仿佛有几个任务在同时运行着,这一个个的子任务,就是一个个进程创建出来的线程,当然,程序要运行,至少要有一个线程.进程和线程在操作系统的调度下,不断的切换,由于时间极短,感觉是在同时运">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,12 +160,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-numpy学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Python并发编程之线程总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python并发编程之线程总结
+    </h1>
+  
+
+        
+        <a href="/2017/03/16/Python并发编程之线程总结/" class="archive-article-date">
+  	<time datetime="2017-03-16T14:09:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-16</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>一个正在运行的程序可以成为一个进程,每个进程管理者他自己的系统状态.比如打开一个播放器来听听歌,播放器这个运行的程序就是一个进程.<br>进程之间是相互独立的,但感觉一个听歌时,我们一边听着歌声,一边看看歌词,一边还刷刷评论,仿佛有几个任务在同时运行着,这一个个的子任务,就是一个个进<br>程<br>创建出来的线程,当然,程序要运行,至少要有一个线程.进程和线程在操作系统的调度下,不断的切换,由于时间极短,感觉是在同时运行的.多个程序同时运行,<br>也叫并行,真正的并行需要运行在多核CPU上,正因为进程和线程的不断切换,操作系统也会自动把很多任务轮流调度到每个核心上执行,在早期的单核CPU电脑时,<br>我们也可以同时运行多个程序或任务.在多线程编程中,多个线程同时更新同一个数据结构时容易造成资源竞争,这时需要引入互斥锁等机制来保持数据的同步.<br>比如多个线程往一个文件里写东西,多个线程同时写,那不乱套了吗,需要锁来保持一次只有一个线程在写入,多个线程依次执行.<br>  这里再说一下并行和并发的区别,并行是同时运行,只有在多核cpu上才能真正实现,而并发是指在一段时间间隔内,多个事件发生,就好比做好吃<br>的时,我可以先炒炒菜,然后洗去那个调味品,回来继续炒,然后又去洗洗下一个菜的材料,然后又翻两下锅里.一个时间间隔内,切换着做了多件事,其实同一个时间<br>点,只做一件事.在网络服务器上,并发也指能同时处理的连接数,比如一个服务器能同时处理1000个TCP链接,这个服务器的并发量就是1000,尽管服务器可能只是<br>双核或4核的.<br>  Python在大部分系统上都支持不同形式的并发编程.一般为三种:多进程,多线程,协程.对于多进程,还没有去好好研究,先总结一下多线程和协程<br>吧.</p>
+<h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><p>  大多数人对多线程比较熟悉,Java等语言都支持的很好,可以将多个线程同时运行在多个核心上,并保证线程安全.蛋疼的是Python因为历史<br>原因,多线程机制有着限制,为了保证运行线程安全,Cpython解释器(GIL)引入了内部全局解释器锁这样一个东西,而Cpython是大部分环境下默认的Python程<br>序执行环境,GIL同时只允许一个线程执行,哪怕程序在多核处理器的计算机上也只能在运行在单个处理器上,这也是GIL争论最多的地方,当然多线程尽管在性能上<br>不太行,但它还是有它可以并发执行程序的优点.而且Python提供的threading等模块也使写多线程程序变得非常简单,这也就是Python的风格.来看看多线程的<br>用法吧!</p>
+<p>最最最简单的:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></div><div class="line">	print(<span class="string">'hello'</span>)</div><div class="line">t = threading.Thread(target=hello)</div><div class="line">t.start()</div><div class="line">t.join()</div></pre></td></tr></table></figure>
+<p>程序运行在主线程上,创建一个Thread实例也就是创建一个新线程,target参数传入需要通过新线程处理的函数名.<br>通过新线程的start方法启动这个新线程,新线程的函数开始执行.join方法会等待调用join的线程执行完后,再回到主线程继续执行.当然join还可以传入一个Timeout,像这样t.join(0.5),启动线程后,在0.5s的时间内,如果线程未执行完,也会终止这个线程,跳入下一个线程或主线程.</p>
+<p>也可以通过重载Thread的run方法来达到同样的目的.这样</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">		print(<span class="string">'我在新线程中哟!'</span>)</div><div class="line">t = MyThread()</div><div class="line">t.start()</div></pre></td></tr></table></figure>
+<p>线程在并发时运行效率可以大大的提高,看下面这个栗子:<br>单线程:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">thfun</span><span class="params">()</span>:</span></div><div class="line">	s = <span class="number">0</span></div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>):</div><div class="line">			s += i</div><div class="line">			time.sleep(<span class="number">0.1</span>)</div><div class="line">	print(s)</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	t = time.time()</div><div class="line">	thfun()</div><div class="line">	thfun()</div><div class="line">	print(<span class="string">'单线程运行时间:'</span>,time.time()-t)</div></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">435</span></div><div class="line"><span class="number">435</span></div><div class="line">单线程运行时间: <span class="number">6.008038520812988</span></div><div class="line">[Finished <span class="keyword">in</span> <span class="number">6.0</span>s]</div></pre></td></tr></table></figure>
+<p>多线程:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">thfun</span><span class="params">()</span>:</span></div><div class="line">    s = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>):</div><div class="line">        s += i</div><div class="line">        time.sleep(<span class="number">0.1</span>)</div><div class="line">    print(s)</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    ths = [threading.Thread(target=thfun) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>)]</div><div class="line">    <span class="keyword">for</span> th <span class="keyword">in</span> ths:</div><div class="line">        th.start()</div><div class="line">    t = time.time()</div><div class="line">    <span class="keyword">for</span> th <span class="keyword">in</span> ths:</div><div class="line">        th.join()</div><div class="line">    print(<span class="string">'多线程运行时间:'</span>,time.time()-t)</div></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">435</span></div><div class="line"><span class="number">435</span></div><div class="line">多线程运行时间: <span class="number">3.0041489601135254</span></div><div class="line">[Finished <span class="keyword">in</span> <span class="number">3.1</span>s]</div></pre></td></tr></table></figure>
+<h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4><p>守护线程:如果将线程a设置为守护线程,设置方法有a.daemon=True和a.setDaemon(True).在主线程结束时,无论a线程是否结束,都会随主线程<br>一起退出.程序运行中，执行一个主线程，如果主线程又创建一个子线程，主线程和子线程就分兵两路，分别运行，那么当主线程完成想退出时<br>，会检验子线程是否完成。如果子线程未完成，则主线程会等待子线程完成后再退出。但是有时候我们需要的是，只要主线程完成了，<br>不管子线程是否完成，都要和主线程一起退出，这时就可以用setDaemon方法了。<br>来看看栗子吧:<br>程序:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading,time</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">daefun</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'daemon start...'</span>)</div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(<span class="string">'daemon end.'</span>)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ndaefun</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'ndaemon start...'</span>)</div><div class="line">    time.sleep(<span class="number">1</span>)</div><div class="line">    print(<span class="string">'ndaemon end.'</span>)</div><div class="line">d = threading.Thread(target=daefun)</div><div class="line">d.daemon = <span class="keyword">True</span></div><div class="line">n = threading.Thread(target=ndaefun)</div><div class="line">print(<span class="string">'main start...'</span>)</div><div class="line">d.start()</div><div class="line">n.start()</div><div class="line">print(<span class="string">'main end.'</span>)</div></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">main start...</div><div class="line">daemon start...</div><div class="line">ndaemon start...</div><div class="line">main end.</div><div class="line">ndaemon end.</div><div class="line">[Finished <span class="keyword">in</span> <span class="number">1.0</span>s</div></pre></td></tr></table></figure>
+<p>并没有看到打印’daemon end!’因为主程序执行完后,守护线程还没执行完,也跟着结束啦,有点感觉和join()方法相反,而非守护线程,在主程序结束时,依然会执行完.</p>
+<h4 id="线程互斥锁"><a href="#线程互斥锁" class="headerlink" title="线程互斥锁"></a>线程互斥锁</h4><p>线程锁的作用是保证在多线程中,让同一块数据在同一时刻只能被一个线程操作,要不数据就容易乱套,所以引入锁的机制.就好比一个全封信箱,很多人想取信或<br>放信.为了防止出错,一次只能去一个人,于是这个人蹦蹦跳跳的去取了要是,开完锁完成操作以后,将信箱锁上,再将要是放回原处,下一个人有蹦蹦跳跳的去取<br>钥匙,打开信箱,操作.<br>代码:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading,time</div><div class="line">share = <span class="number">4</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,i)</span>:</span></div><div class="line">        super().__init__()</div><div class="line">        self.i = i</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">global</span> share</div><div class="line">        <span class="keyword">for</span> d <span class="keyword">in</span> range(<span class="number">3</span>):</div><div class="line">            lock.acquire()</div><div class="line">            print(share)</div><div class="line">            share += self.i</div><div class="line">            time.sleep(<span class="number">0.3</span>)</div><div class="line">            print(<span class="string">'+'</span>,self.i,<span class="string">'='</span>,share)</div><div class="line">            lock.release()</div><div class="line">lock = threading.Lock()</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    t = MyThread(<span class="number">2</span>)</div><div class="line">    tt = MyThread(<span class="number">6</span>)</div><div class="line">    t.start()</div><div class="line">    tt.start()</div></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="number">4</span></div><div class="line">+ <span class="number">2</span> = <span class="number">6</span></div><div class="line"><span class="number">6</span></div><div class="line">+ <span class="number">2</span> = <span class="number">8</span></div><div class="line"><span class="number">8</span></div><div class="line">+ <span class="number">2</span> = <span class="number">10</span></div><div class="line"><span class="number">10</span></div><div class="line">+ <span class="number">6</span> = <span class="number">16</span></div><div class="line"><span class="number">16</span></div><div class="line">+ <span class="number">6</span> = <span class="number">22</span></div><div class="line"><span class="number">22</span></div><div class="line">+ <span class="number">6</span> = <span class="number">28</span></div><div class="line">[Finished <span class="keyword">in</span> <span class="number">2.9</span>s]</div></pre></td></tr></table></figure>
+<p>操作数据时,县通过acquire()方法获取锁,获取后在释放之前,因为锁只有一把,其他线程无法操作这块数据.直到通过release()方法释放锁,其他线程才能<br>获得锁,操作数据.锁机制固然好,但要注意避免死锁.在线程间共享多个资源的时候，如果两个线程分别占有一部分资源并且同时等待对方的资源，就会造成死锁</p>
+<h4 id="Condition对象"><a href="#Condition对象" class="headerlink" title="Condition对象"></a>Condition对象</h4><p>Python提供的Condition对象提供了对复杂线程同步问题的支持。Condition被称为条件变量，除了提供与Lock类似的acquire和release方法外，<br>还提供了wait和notify方法。</p>
+<p>栗子:生产者通过判断是否生产,消费者通过判断是否消费.</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> threading,time</div><div class="line">share = <span class="number">0</span></div><div class="line">share_cond = threading.Condition()</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProThread</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,)</span>:</span></div><div class="line">        super().__init__()</div><div class="line">        self.name = <span class="string">'Produce'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">global</span> share</div><div class="line">        <span class="keyword">if</span> share_cond.acquire():</div><div class="line">            <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> share:</div><div class="line">                    share += <span class="number">1</span></div><div class="line">                    print(self.name,share)</div><div class="line">                    share_cond.notify()</div><div class="line">                share_cond.wait()</div><div class="line">                time.sleep(<span class="number">0.3</span>)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super().__init__()</div><div class="line">        self.name = <span class="string">'Custom'</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">global</span> share</div><div class="line">        <span class="keyword">if</span> share_cond.acquire():</div><div class="line">            <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">                <span class="keyword">if</span> share:</div><div class="line">                    share -= <span class="number">1</span></div><div class="line">                    print(self.name,share)</div><div class="line">                    share_cond.notify()</div><div class="line">                share_cond.wait()</div><div class="line">                time.sleep(<span class="number">0.3</span>)</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    t  = ProThread()</div><div class="line">    t.start()</div><div class="line">    tt = CustomThread()</div><div class="line">    tt.start()</div></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Produce <span class="number">1</span></div><div class="line">Custom <span class="number">0</span></div><div class="line">Produce <span class="number">1</span></div><div class="line">Custom <span class="number">0</span></div><div class="line">Produce <span class="number">1</span></div><div class="line">Custom <span class="number">0</span></div><div class="line">Produce <span class="number">1</span></div><div class="line">Custom <span class="number">0</span></div><div class="line">Produce <span class="number">1</span></div><div class="line">Custom <span class="number">0</span></div><div class="line">Produce <span class="number">1</span></div><div class="line">Custom <span class="number">0</span></div><div class="line">Produce <span class="number">1</span></div><div class="line">Custom <span class="number">0</span></div><div class="line">.....</div></pre></td></tr></table></figure>
       
 
       
@@ -169,6 +217,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -219,7 +278,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/12/numpy学习笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/16/Python并发编程之线程总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -233,18 +292,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/16/new/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/07/12/numpy学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          new
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2017/03/16/Python并发编程之线程总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python并发编程之线程总结</div>
+    <a href="/2017/03/16/tornado源码学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tornado源码学习笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   

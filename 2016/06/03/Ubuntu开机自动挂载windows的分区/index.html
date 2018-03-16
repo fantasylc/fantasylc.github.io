@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>Ubuntu开机自动挂载windows的分区 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/numpy学习笔记/index.html">
+  <meta name="description" content="电脑装的是ubuntu和win10双系统.装ubuntu的时候给ubuntu分配的磁盘小了,最近发现有点不够用.于是想着从window拿出一块盘来给linux用.查找资料,最后折腾成功啦.记录一下过程.">
+<meta name="keywords" content="编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu开机自动挂载windows的分区">
+<meta property="og:url" content="http://yoursite.com/2016/06/03/Ubuntu开机自动挂载windows的分区/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:updated_time" content="2017-07-12T05:26:41.000Z">
+<meta property="og:description" content="电脑装的是ubuntu和win10双系统.装ubuntu的时候给ubuntu分配的磁盘小了,最近发现有点不够用.于是想着从window拿出一块盘来给linux用.查找资料,最后折腾成功啦.记录一下过程.">
+<meta property="og:image" content="http://7xn3wd.com1.z0.glb.clouddn.com/gpart1.png">
+<meta property="og:image" content="http://7xn3wd.com1.z0.glb.clouddn.com/Screenshot%20from%202015-11-26%2011%3A39%3A39.png">
+<meta property="og:updated_time" content="2018-03-16T14:29:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Ubuntu开机自动挂载windows的分区">
+<meta name="twitter:description" content="电脑装的是ubuntu和win10双系统.装ubuntu的时候给ubuntu分配的磁盘小了,最近发现有点不够用.于是想着从window拿出一块盘来给linux用.查找资料,最后折腾成功啦.记录一下过程.">
+<meta name="twitter:image" content="http://7xn3wd.com1.z0.glb.clouddn.com/gpart1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,12 +163,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-numpy学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Ubuntu开机自动挂载windows的分区" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu开机自动挂载windows的分区
+    </h1>
+  
+
+        
+        <a href="/2016/06/03/Ubuntu开机自动挂载windows的分区/" class="archive-article-date">
+  	<time datetime="2016-06-03T14:26:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-03</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>电脑装的是ubuntu和win10双系统.装ubuntu的时候给ubuntu分配的磁盘小了,最近发现有点不够用.于是想着从window拿出一块盘来给linux用.查找资料,最后折腾成功啦.记录一下过程.<br><a id="more"></a><br>window下的文件系统现在一般是ntfs.在linux其实是可以访问的.但感觉用起来有些不方便.先就是把window下某个盘如e盘(选e盘因为没有在e盘装任何软件)的东西全部备份一下.可以全部复制到别的盘.然后格式化e盘.点击我的电脑-&gt;管理-&gt;磁盘管理.找到e分区.右击删除卷.就把ntfs文件系统给删了.然后回到ubuntu中.</p>
+<p>这时候需要用到一个工具,Gparted Partition Editor. 在ubuntu software center搜索安装即可.打开页面是这样子的.</p>
+<p><img src="http://7xn3wd.com1.z0.glb.clouddn.com/gpart1.png" alt="img"></p>
+<p>找到刚才删除的那块盘.根据盘的大小就知道啦.然后右击-&gt;new新建一个盘…操作完成后点那个勾apply all operations.就可以啦.就可以得到一个新的分区.我的是/dev/sda 15.</p>
+<p>后来发现上面的步骤更简单.备份数据后,直接用Gparted就可以格式话和format to ext4啦.不需要删除卷啥的.</p>
+<p>接下来就是把这个分区挂载啦.我选择的是在 /mnt下新建一个目录wine 然后把盘挂载到这个目录下..</p>
+<p>通过blkid命令可以得到/dev/sda15 这样的信息<br>/dev/sda15: UUID=”d05d23e1-ca9c-456d-b888-9cc3a0c5c627” TYPE=”ext4”<br>复制UUID.<br>然后vi /etc/fstab 编辑配置信息.在后面追加:我的是:<br><img src="http://7xn3wd.com1.z0.glb.clouddn.com/Screenshot%20from%202015-11-26%2011%3A39%3A39.png" alt="img"></p>
+<p>保存退出后.<br>mount -a 就会根据配置文件自动挂载啦.而且开机重启后也不需要重新挂载.<br>当然中间遇到了一些问题.如查看分区情况fdisk -l 会报错:WARNING: GPT (GUID Partition Table) detected on ‘/dev/sda’! The util fdisk doesn’t support GPT. Use GNU Parted.所以这个sda就是gpt的。看gpt分区详细内容可用parted，如：parted -l.<br>还有涉及到挂载时分区的权限.和默认编码等问题.</p>
+
       
 
       
@@ -169,6 +199,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -219,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/12/numpy学习笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/06/03/Ubuntu开机自动挂载windows的分区/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -233,18 +274,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/16/new/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/08/16/socket摘录/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          new
+          socket摘录
         
       </div>
     </a>
   
   
-    <a href="/2017/03/16/Python并发编程之线程总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python并发编程之线程总结</div>
+    <a href="/2016/05/08/socketserver源码学习之多进程和多线程Mixin/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">socketserver源码学习之多进程和多线程Mixin</div>
       <i class="icon-circle-right"></i>
     </a>
   

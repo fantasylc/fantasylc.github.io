@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>numpy笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/numpy学习笔记/index.html">
+  <meta name="description" content="记录一下numpy一些函数的使用">
+<meta name="keywords" content="编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy笔记">
+<meta property="og:url" content="http://yoursite.com/2016/10/11/numpy学习笔记/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:updated_time" content="2017-07-12T05:26:41.000Z">
+<meta property="og:description" content="记录一下numpy一些函数的使用">
+<meta property="og:updated_time" content="2018-03-16T14:18:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="numpy笔记">
+<meta name="twitter:description" content="记录一下numpy一些函数的使用">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,9 +163,25 @@
             <article id="post-numpy学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      numpy笔记
+    </h1>
+  
+
+        
+        <a href="/2016/10/11/numpy学习笔记/" class="archive-article-date">
+  	<time datetime="2016-10-11T14:09:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-11</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>记录一下numpy一些函数的使用<br><a id="more"></a></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>:指定数据类型：dtype=<span class="string">''</span></div><div class="line"><span class="number">2</span>:改变数组维度 a:如：b=np.arange(<span class="number">24</span>).reshape(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">             b:展平，变成一维 b.ravel() 或 b.flatten() flatten会请求分配内存来保存结果</div><div class="line">             c:转置 b.transpose() 或b.T</div><div class="line">             d:b.resize((<span class="number">2</span>,<span class="number">12</span>))和reshape()</div><div class="line"><span class="number">3</span>:数组的组合：a:水平组合：np.hstack((a,b))或np.concatenate((a,b),axis=<span class="number">1</span>)</div><div class="line">		    b:垂直组合：np.vstack((a,b))或npconcatenate((a,b),axis=<span class="number">0</span>)</div><div class="line">		    c:深度组合：np.dstack((a,b)</div><div class="line"><span class="number">4</span>:数组分割：a:水平分割：np.hsplit(a,<span class="number">3</span>) 或 np.split(a,<span class="number">3</span>,axis=<span class="number">1</span>)  分割成三列</div><div class="line">          b:垂直分割：np.vsplit(a,<span class="number">3</span>) 或np.split(a,<span class="number">3</span>,axis=<span class="number">0</span>)</div><div class="line">          c:深度分割：np.dsplit(c,<span class="number">3</span>)</div><div class="line"><span class="number">5</span>:数组的属性：.ndim属性 列出数组的纬度</div><div class="line">            .size属性 列出数组元素的总个数</div><div class="line">            .itemsize 元素在内存中所占的字节数</div><div class="line">            .nbytes 数组所占存储空间 </div><div class="line">            .T 转置</div><div class="line">            .real 复数数组的实部</div><div class="line">            .imag 复数数组的虚部</div><div class="line"><span class="number">6</span>：常用函数   a: np.eye(<span class="number">3</span>) 单位矩阵：</div><div class="line">			b: np.savetxt(<span class="string">"eye.txt"</span>,a)  数据存储</div><div class="line">			c: c,v = np.loadtxt(<span class="string">'data.csv'</span>,delimiter=<span class="string">','</span>,usecols=(<span class="number">6</span>,<span class="number">7</span>),unpack=<span class="keyword">True</span>)读入CSV文件： </div><div class="line">			d: np.average(c,weights=v)加权平均数</div><div class="line">			e: np.mean(c) 算数平均数 </div><div class="line">			f: np.max() np.min() 最大值最小值 </div><div class="line">			g: np.ptn()数组范围，即最大值最小值之差：</div><div class="line">			h: np.median()中位数：</div><div class="line">			i: np.msort()排序：</div><div class="line">			j: np.var()方差：</div><div class="line">			k: np.std()标准差：</div><div class="line">			l: np.diff()数组相邻元素的差值构成的数组</div><div class="line">			m: np.log()自然对数In :</div><div class="line">			n: np.where(c&gt;<span class="number">2</span>)筛选: 根据指定的条件返回所有满足条件的数组元素的索引值</div><div class="line">			o: np.take(m,indexarray)获取索引值相对应的元素质：</div><div class="line">			p: np.argmax 和 np.argmin 返回数组中最大和最小元素的索引值 </div><div class="line">			q: np.maximum(a,b,c)返回abc 之中第一个元素的最大值，第二个元素的最大值。。。</div><div class="line">			r: np.ones()  全是<span class="number">1</span>的数组</div><div class="line">			s: np.convolve(weights,c) 卷积</div><div class="line">			t: np.exp(x) 指数函数 即e**x</div><div class="line">			u: np.linspace(f,e,s)根据起始值，终止值，步长产生一个数组</div><div class="line">			v: a.fill(<span class="number">8</span>)  将a的值全部设为<span class="number">8</span></div><div class="line">			w: np.linalg.lstsq(A,y)[<span class="number">0</span>] 求解Ap = y p的值 求解多元一次方程组</div><div class="line">			x: np.dot(a,b) ａｂ的乘积</div><div class="line">			y: np.intersectld(a,b) ab数组的｀相同元素</div><div class="line">			z: a.clip(<span class="number">1</span>,<span class="number">2</span>)　修剪数组　比１小的都换成１，比２大的都换成２</div><div class="line">			　　　a.compress(a&gt;<span class="number">2</span>) 返回满足条件的数组元素</div><div class="line">			   b.prod()　b中各元素相乘　和arange结合可以求阶乘</div><div class="line">			   b.cumprod  返回ｂ中各元素的累积乘积</div><div class="line"><span class="number">7</span>:便捷函数:</div><div class="line">         np.cov(X,Y)           求两矩阵的协方差</div><div class="line">         a.diagonal()          求对角线上的元素</div><div class="line">         a.trace()    		   求矩阵迹,对角线上元素之和</div><div class="line">         np.corrcoef(a,b)      相当于covariance / (a.std() * b.std())  两向量相关系数为协方差除两标准差的乘积</div><div class="line">         np.ployfit(x,y,<span class="number">3</span>)    拟合,用三次多项式 得到多项式的系数poly</div><div class="line">         np.polyval(poly,x[<span class="number">-1</span>]+<span class="number">1</span>)   推断下一个值</div><div class="line">         np.roots(poly)   求多项式的根</div><div class="line">         np.polyder(poly) 求多项式导函数</div><div class="line">         np.sign()  返回元素符号,正为<span class="number">1</span> 负为<span class="number">-1</span></div><div class="line">         np.piecewise() 分段给定值 如  np.piecewise(x, [x &lt; <span class="number">0</span>, x &gt;= <span class="number">0</span>], [<span class="keyword">lambda</span> x: -x, <span class="keyword">lambda</span> x: x])</div><div class="line">                                 或: np.piecewise(x, [x &lt; <span class="number">0</span>, x &gt;= <span class="number">0</span>], [<span class="number">-1</span>, <span class="number">1</span>])</div><div class="line">         np.array_equal(a,b)  检验两数组是否相同</div><div class="line">         vfunc=np.vertorize(func)  分别作用于一个函数,相当于Python的map函数</div><div class="line">         np.hanning(N)  计算权重,生成长度为N的窗口</div><div class="line">         np.polysub(a,b) 对多项式相减</div><div class="line">         np.isreal()  判断数组是否为实数</div><div class="line">         np.select(condlist, choicelist)  根据条件筛选</div><div class="line"><span class="number">8</span>:矩阵和通用函数：</div><div class="line">         A = np.mat(<span class="string">'1 2 3;4 5 6;7 8 9'</span>) 创建矩阵</div><div class="line">         A.T A.I转置矩阵和逆矩阵</div><div class="line">         np.bmat(<span class="string">"A B;A B"</span>)创建分块复合矩阵</div><div class="line">         np.frompyfunc(func, nin, nout)  创建通用函数 nin:输入参数个数，nout输出对象个数</div><div class="line">         通用函数的四个方法：</div><div class="line">                          reduce       沿着指定的轴，递归作用于数组，</div><div class="line">                          accumulate   和reduce的区别是会返回中间值</div><div class="line">                          reduceat     </div><div class="line">                          outer</div><div class="line">         np.divide(a,b) 除法，结果只保留整数部分</div><div class="line">         np.true_divide(a,b) 除法，结果保留小数</div><div class="line">         np.floor_divide()  除法，只保留整数结果，但加.</div><div class="line">         np.remainder()  返回两数组相处后的余数</div><div class="line"> <span class="number">9</span>:linalg模块</div><div class="line">         np.linalg,inv(a)  求逆矩阵</div><div class="line">         np.linalg.solve(A,b)  求解线性方程组</div><div class="line">         np.linalg.eigvals()  求特征值</div><div class="line">         m,n=np.linalg.eig(A) 求特征值和特征向量</div><div class="line">         np.linalg.pinv()    求广义逆矩阵</div><div class="line">         np.linalg.det(A)   计算矩阵的行列式</div><div class="line"> <span class="number">10</span>：fft模块</div><div class="line">         np.fft.fft(a)  求傅里叶变换</div><div class="line">         np.fft.fftshift()  傅里叶变换后移频</div><div class="line">         np.fft.ifftshift()  移频逆操作</div><div class="line">         np.random.binomial(n,p,size)  计算二项式分布</div><div class="line">         np.random.hypergeometric(ngood, nbad, nsample, size=<span class="keyword">None</span>)  超几何分布</div><div class="line">         np.random.normal(size=N)  正太分布</div><div class="line">         np.random.lognormal(size=N) 对数正太分布</div><div class="line"><span class="number">11</span>：专用函数：</div><div class="line">		 np.searchsorted(a, v, side=<span class="string">'left'</span>) 在数组a中插入值v，返回v在数组中的位置</div><div class="line">		 np.lexsort(a,b)   先根据a，若相同根据b来排序。a,b按索引值对应。</div><div class="line">		 np.i0()  第一类修正的零阶贝塞尔函数</div><div class="line">		 np.sinc()  sinc函数</div></pre></td></tr></table></figure>
       
 
       
@@ -169,6 +189,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -219,7 +250,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/12/numpy学习笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/10/11/numpy学习笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -233,18 +264,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/16/new/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/11/16/Python并发编程之线程总结/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          new
+          Python并发编程之线程总结
         
       </div>
     </a>
   
   
-    <a href="/2017/03/16/Python并发编程之线程总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python并发编程之线程总结</div>
+    <a href="/2016/08/16/socket摘录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">socket摘录</div>
       <i class="icon-circle-right"></i>
     </a>
   

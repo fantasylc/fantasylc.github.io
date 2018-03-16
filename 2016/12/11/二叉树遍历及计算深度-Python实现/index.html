@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <title>二叉树遍历及计算深度-Python实现 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2017/07/12/numpy学习笔记/index.html">
+  <meta name="description" content="递归实现:">
+<meta name="keywords" content="编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树遍历及计算深度-Python实现">
+<meta property="og:url" content="http://yoursite.com/2016/12/11/二叉树遍历及计算深度-Python实现/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:updated_time" content="2017-07-12T05:26:41.000Z">
+<meta property="og:description" content="递归实现:">
+<meta property="og:updated_time" content="2018-03-16T15:07:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="二叉树遍历及计算深度-Python实现">
+<meta name="twitter:description" content="递归实现:">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,12 +160,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-numpy学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-二叉树遍历及计算深度-Python实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      二叉树遍历及计算深度-Python实现
+    </h1>
+  
+
+        
+        <a href="/2016/12/11/二叉树遍历及计算深度-Python实现/" class="archive-article-date">
+  	<time datetime="2016-12-11T15:00:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>递归实现:</p>
+<a id="more"></a>
+<p>代码:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, data=None, left=None, right=None)</span>:</span></div><div class="line">        self.data = data</div><div class="line">        self.left = left</div><div class="line">        self.right = right</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinTree</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="string">"""docstring for BinTree"""</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, root)</span>:</span></div><div class="line">        self.root = root</div><div class="line">        <span class="comment"># 前序遍历</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pretraver</span><span class="params">(self, treenode)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> treenode:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        print(treenode.data)</div><div class="line">        self.pretraver(treenode.left)</div><div class="line">        self.pretraver(treenode.right)</div><div class="line">        <span class="comment"># 中序遍历</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">midtraver</span><span class="params">(self, treenode)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> treenode:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        self.midtraver(treenode.left)</div><div class="line">        print(treenode.data)</div><div class="line">        self.midtraver(treenode.right)</div><div class="line">        <span class="comment"># 后序遍历</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">aftertraver</span><span class="params">(self, treenode)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> treenode:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        self.aftertraver(treenode.left)</div><div class="line">        self.aftertraver(treenode.right)</div><div class="line">        print(treenode.data)</div><div class="line">        <span class="comment"># 计算深度</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getdepth</span><span class="params">(self, treenode)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> treenode:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        left = <span class="number">1</span></div><div class="line">        right = <span class="number">1</span></div><div class="line">        left += self.getdepth(treenode.left)</div><div class="line">        right += self.getdepth(treenode.right)</div><div class="line">        <span class="keyword">if</span> left &gt;= right:</div><div class="line">            <span class="keyword">return</span> left</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> right</div><div class="line">            <span class="comment"># 统计节点数:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getsize</span><span class="params">(self, treenode)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> treenode:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        result = self.getsize(treenode.left) + self.getsize(treenode.right) + <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> result</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    root = Node(<span class="string">'D'</span>, Node(<span class="string">'B'</span>, Node(<span class="string">'A'</span>), Node(<span class="string">'C'</span>)), Node(<span class="string">'E'</span>, right=Node(<span class="string">'G'</span>, Node(<span class="string">'F'</span>, Node(<span class="string">'H'</span>)))))</div><div class="line">    bt = BinTree(root)</div><div class="line">    print(<span class="string">'prev:'</span>)</div><div class="line">    bt.pretraver(bt.root)</div><div class="line">    print(<span class="string">'mid:'</span>)</div><div class="line">    bt.midtraver(bt.root)</div><div class="line">    print(<span class="string">'after:'</span>)</div><div class="line">    bt.aftertraver(bt.root)</div><div class="line">    print(<span class="string">'Depth of the tree'</span>)</div><div class="line">    depth = bt.getdepth(bt.root)</div><div class="line">    print(depth)</div><div class="line">    print(<span class="string">'summer of nodes:'</span>)</div><div class="line">    number = bt.getsize(bt.root)</div><div class="line">    print(number)</div><div class="line">``` </div><div class="line"><span class="comment">##### 非递归实现:</span></div><div class="line"></div><div class="line"><span class="comment">###### 前序</span></div><div class="line">算法步骤:</div><div class="line"></div><div class="line"><span class="number">1</span> 访问结点p,并将p入栈</div><div class="line"><span class="number">2</span> 判断p的左结点是否为空,若为空,则取栈顶结点,并将其出栈,然后将栈顶结点的右结点为p,并循环至<span class="number">1.</span></div><div class="line">若不为空,则将p的左结点置为当前结点</div><div class="line"><span class="number">3</span> 直到p为<span class="keyword">None</span> 且栈为空,则遍历结束</div><div class="line"></div><div class="line">代码:</div><div class="line"></div><div class="line">```py</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">pretraver</span><span class="params">(root)</span>:</span></div><div class="line">    p = root</div><div class="line">    s = []</div><div class="line">    <span class="keyword">while</span> p <span class="keyword">or</span> s:</div><div class="line">        <span class="keyword">while</span> p:</div><div class="line">            print(p.data)</div><div class="line">			s.append(p)</div><div class="line">			p = p.left</div><div class="line">		<span class="keyword">if</span> s:</div><div class="line">			p = s.pop()</div><div class="line">			p = p.right</div></pre></td></tr></table></figure>
+<h6 id="中序"><a href="#中序" class="headerlink" title="中序"></a>中序</h6><p>根据中序遍历的顺序，对于任一结点，优先访问其左孩子，而左孩子结点又可以看做一根结点，然后继续访问其左孩子结点，直到遇到左孩子结点为空的结点才进行访问，然后按相同的规则访问其右子树。因此其处理过程如下：<br>对于任一结点P，<br>1)若其左孩子不为空，则将P入栈并将P的左孩子置为当前的P，然后对当前结点P再进行相同的处理；<br>2)若其左孩子为空，则取栈顶元素并进行出栈操作，访问该栈顶结点，然后将当前的P置为栈顶结点的右孩子；<br>3)直到P为NULL并且栈为空则遍历结束中序</p>
+<p>代码:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">midtraver</span><span class="params">(root)</span>:</span></div><div class="line">	p = root</div><div class="line">	s = []</div><div class="line">	<span class="keyword">while</span> p <span class="keyword">or</span> s:</div><div class="line">		<span class="keyword">while</span> p:</div><div class="line">			s.append(p)</div><div class="line">			p=p.left</div><div class="line">		<span class="keyword">if</span> s:</div><div class="line">			p = s.pop()</div><div class="line">			print(p.data)</div><div class="line">			p = p.right</div></pre></td></tr></table></figure>
+<h6 id="后序"><a href="#后序" class="headerlink" title="后序:"></a>后序:</h6><p>要保证根结点在左孩子和右孩子访问之后才能访问，因此对于任一结点P，先将其入栈。如果P不存在左孩子和右孩子，则可以直接访问它；或者P存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。若非上述两种情况，则将P的右孩子和左孩子依次入栈，这样就保证了每次取栈顶元素的时候，左孩子在右孩子前面被访问，左孩子和右孩子都在根结点前面被访问。</p>
+<p>代码:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">aftertraver</span><span class="params">(root)</span>:</span></div><div class="line">	s = []</div><div class="line">	cur = <span class="keyword">None</span>   <span class="comment">#当前结点</span></div><div class="line">	pre = <span class="keyword">None</span>   <span class="comment">#前一次访问的结点</span></div><div class="line">	s.append(root)</div><div class="line">	<span class="keyword">while</span> s:</div><div class="line">		cur = s[<span class="number">-1</span>]</div><div class="line">		<span class="keyword">if</span> ((<span class="keyword">not</span> cur.left) <span class="keyword">and</span> (<span class="keyword">not</span> cur.right)) <span class="keyword">or</span> (pre <span class="keyword">and</span> (pre==cur.left <span class="keyword">or</span> pre==cur.right)):</div><div class="line">			print(cur.data)</div><div class="line">			s.pop()</div><div class="line">			pre = cur</div><div class="line">	</div><div class="line">		<span class="keyword">else</span>:</div><div class="line">			<span class="keyword">if</span> cur.right:</div><div class="line">				s.append(cur.right)</div><div class="line">			<span class="keyword">if</span> cur.left:</div><div class="line">				s.append(cur.left)</div></pre></td></tr></table></figure>
       
 
       
@@ -169,6 +197,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -219,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/07/12/numpy学习笔记/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/11/二叉树遍历及计算深度-Python实现/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -233,18 +272,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/16/new/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/12/16/快速排序-Python实现/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          new
+          快速排序-Python实现
         
       </div>
     </a>
   
   
-    <a href="/2017/03/16/Python并发编程之线程总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python并发编程之线程总结</div>
+    <a href="/2016/11/16/归并排序-Python实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">归并排序-Python实现</div>
       <i class="icon-circle-right"></i>
     </a>
   
